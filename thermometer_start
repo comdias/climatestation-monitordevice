@@ -1,0 +1,3 @@
+#!/bin/bash
+cd /home/pi/thermometer
+sudo python thermometer.py > $PWD/log/thermometer.log 2>&1 &
