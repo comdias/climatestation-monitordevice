@@ -3,10 +3,16 @@ import sys
 import glob
 import time
 
+import socket
 import urllib
 import urllib2
+
+import datetime
  
 from collections import deque
+
+def now():
+    return datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M:%S')
 
 q = deque()
 
@@ -49,12 +55,18 @@ def post():
         req = urllib2.Request(url, data)
         response = urllib2.urlopen(req)
         if response.read() != 'OK':
-            print 'Error uploading data'
+            print now() + 'Error uploading data'
             print response.read()
     except urllib2.HTTPError as e:
+        print now() 
         print e
     except urllib2.URLError as e:
+        print now() 
         print e
+        time.sleep(60)
+    except socket.error as serr:
+        print now()
+        print serr
         time.sleep(60)
     finally:
         sys.stdout.flush()
