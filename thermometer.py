@@ -1,3 +1,12 @@
+# to enable w1-gpio to read DS18B20 you need to:
+# sudo vi /boot/config.txt
+# add parameter:
+#  dtoverlay=w1-gpio
+# restart the board:
+# sudo reboot
+# sudo modprobe w1-gpio
+# sudo modprobe w1-therm
+
 import os
 import sys
 import glob
